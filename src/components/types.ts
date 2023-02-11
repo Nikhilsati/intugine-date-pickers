@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export type TMeridian = "AM" | "PM";
 export type TTimeFormat = 12 | 24;
@@ -39,4 +39,11 @@ export interface IPickerContainerProps {
 export type TDateRange = {
   startDate: Date,
   endDate: Date
+}
+
+export type TDatePopper = {
+  anchorEl: any,
+  setAnchorEl: any,
+  children?: ReactNode,
+  parentElement: ReactElement,
 }

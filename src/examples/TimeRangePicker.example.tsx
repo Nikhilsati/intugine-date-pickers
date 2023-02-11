@@ -5,7 +5,7 @@ import Textbox from "../components/common/Textbox";
 import DateTimeRangePicker from "../components/DateTimeRangePicker";
 import CalendarIcon from "../components/icons/CalendarIcon";
 import { TDateRange } from "../components/types";
-import DatePopper from "../DatePopper";
+import DatePopper from "../components/common/DatePopper";
 import TimeRangePicker from "../components/TimeRangePicker";
 
 const TimeRangePickerExample = () => {

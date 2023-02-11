@@ -1,12 +1,13 @@
 import { ClickAwayListener, Popper } from "@mui/material";
 import { useId } from "react";
+import { TDatePopper } from "../types";
 
 const DatePopper = ({
   anchorEl,
   setAnchorEl,
   children,
   parentElement,
-}: any) => {
+}: TDatePopper) => {
   const id = useId();
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>

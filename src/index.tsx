@@ -8,3 +8,4 @@ export { default as ThemeProvider } from "./DefaultThemeProvider";
 export { default as Textbox } from "./components/common/Textbox";
 export { default as Calendar } from "./components/common/Calendar";
 export { default as Time } from "./components/common/Time";
+export { default as DatePopper } from "./components/common/DatePopper";

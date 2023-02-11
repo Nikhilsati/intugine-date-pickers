@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Textbox from "../components/common/Textbox";
 import DateTimePicker from "../components/DateTimePicker";
 import CalendarIcon from "../components/icons/CalendarIcon";
-import DatePopper from "../DatePopper";
+import DatePopper from "../components/common/DatePopper";
 
 const DateTimePickerExample = () => {
     const [anchorEl, setAnchorEl] = useState<any>(null);

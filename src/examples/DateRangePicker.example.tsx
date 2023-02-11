@@ -5,7 +5,7 @@ import Textbox from "../components/common/Textbox";
 import DateRangePicker from "../components/DateRangePicker";
 import CalendarIcon from "../components/icons/CalendarIcon";
 import { TDateRange } from "../components/types";
-import DatePopper from "../DatePopper";
+import DatePopper from "../components/common/DatePopper";
 
 const DateRangePickerExample = () => {
   const [anchorEl, setAnchorEl] = useState<any>(null);
