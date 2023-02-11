@@ -46,7 +46,7 @@ const DateTimePicker = ({
   const activePickerState = useActive(0);
   const [currentDate, setCurrentDate] = useRenderOnce({
     initialValue: defaultValue ?? value ?? new Date(),
-    isEqual,
+    isEqual: (a: Date, b: Date) => isEqual(a, b),
     onChange,
     value,
   });

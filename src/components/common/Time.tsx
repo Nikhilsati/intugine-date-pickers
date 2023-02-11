@@ -182,7 +182,7 @@ const Time = ({
 }: ITimeProps) => {
   const [currentTime, setCurrentTime] = useRenderOnce({
     initialValue: defaultValue ?? value ?? new Date(),
-    isEqual,
+    isEqual: (a: Date, b: Date) => isEqual(a, b),
     onChange,
     value,
   });

@@ -1,12 +1,21 @@
 {
-  "name": "intugine-date-time-picker",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@intugine/pickers",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
+  "module": "./lib/esm/index.js",
+  "main": "./lib/cjs/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rimraf lib",
+    "copy-files": "copyfiles -e **/*.ts -e **/*.tsx -u 1 lib/esm/src",
+    "tsc": "npm run clean && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json && npm run copy-files",
+    "prepare": "npm run tsc"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
