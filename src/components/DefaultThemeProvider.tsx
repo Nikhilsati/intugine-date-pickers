@@ -1,4 +1,4 @@
-import lightTheme from "./theme";
+import lightTheme from "../theme";
 import { ThemeProvider } from "@mui/material";
 import { ReactNode } from "react";
 
