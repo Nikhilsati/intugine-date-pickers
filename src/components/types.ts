@@ -1,3 +1,4 @@
+import { PopperProps } from "@mui/material";
 import { ReactElement, ReactNode } from "react";
 
 export type TMeridian = "AM" | "PM";
@@ -37,13 +38,18 @@ export interface IPickerContainerProps {
 }
 
 export type TDateRange = {
-  startDate: Date,
-  endDate: Date
-}
+  startDate: Date;
+  endDate: Date;
+};
 
 export type TDatePopper = {
-  anchorEl: any,
-  setAnchorEl: any,
-  children?: ReactNode,
-  parentElement: ReactElement,
-}
+  anchorEl: any;
+  setAnchorEl: any;
+  children?: ReactNode;
+  parentElement: ReactElement;
+  popperProps?: PopperProps;
+  containerProps?: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >;
+};

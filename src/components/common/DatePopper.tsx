@@ -7,16 +7,15 @@ const DatePopper = ({
   setAnchorEl,
   children,
   parentElement,
+  containerProps,
+  popperProps,
 }: TDatePopper) => {
   const id = useId();
   return (
     <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-      <div>
+      <div {...containerProps}>
         {parentElement}
         <Popper
-          id={id}
-          open={Boolean(anchorEl)}
-          anchorEl={anchorEl}
           modifiers={[
             {
               name: "preventOverflow",
@@ -31,6 +30,11 @@ const DatePopper = ({
             },
           ]}
           placement="bottom"
+          style={{ zIndex: 999999 }}
+          {...popperProps}
+          id={id}
+          open={Boolean(anchorEl)}
+          anchorEl={anchorEl}
         >
           {children}
         </Popper>
