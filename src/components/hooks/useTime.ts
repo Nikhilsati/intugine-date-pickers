@@ -11,7 +11,7 @@ export interface ITimeInputHookProps {
 /**
  * A Hook to manage the Time Component that can be used for Hour or Minute
  * handlePrev & handleNext function are use to subtract and add one unit of time respectively.
- * currentValue throws the latest Value, 
+ * currentValue throws the latest Value,
  * handleInput is used to directly change the input box,
  */
 const useTime = ({
@@ -37,7 +37,7 @@ const useTime = ({
   };
 
   const handlePrev = () => {
-    let newDate;
+    let newDate: Date;
     if (type === "hour") {
       const currentHours = currentValue.getHours();
       newDate = setHours(currentValue, currentHours - 1);
@@ -45,11 +45,14 @@ const useTime = ({
       const currentMinutes = currentValue.getMinutes();
       newDate = setMinutes(currentValue, currentMinutes - 1);
     }
+    newDate.setDate(currentValue.getDate());
+    newDate.setMonth(currentValue.getMonth());
+    newDate.setFullYear(currentValue.getFullYear());
     setCurrentValue(newDate);
   };
 
   const handleNext = () => {
-    let newDate;
+    let newDate: Date;
     if (type === "hour") {
       const currentHours = currentValue.getHours();
       newDate = setHours(currentValue, currentHours + 1);
@@ -57,6 +60,9 @@ const useTime = ({
       const currentMinutes = currentValue.getMinutes();
       newDate = setMinutes(currentValue, currentMinutes + 1);
     }
+    newDate.setDate(currentValue.getDate());
+    newDate.setMonth(currentValue.getMonth());
+    newDate.setFullYear(currentValue.getFullYear());
     setCurrentValue(newDate);
   };
 
