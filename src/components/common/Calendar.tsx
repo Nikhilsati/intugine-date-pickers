@@ -1,16 +1,12 @@
 import { Dropdown } from "@intugine-technologies/mui";
-import { Box, styled, useTheme } from "@mui/material";
-import Paper from "@mui/material/Paper";
-import { addMonths, getMonth, getYear, isEqual, subMonths } from "date-fns";
-import { useEffect, useState } from "react";
+import { Box, styled } from "@mui/material";
+import { addMonths, getMonth, getYear, subMonths } from "date-fns";
+import { useCallback, useState } from "react";
 import ReactCalendar, { CalendarProps } from "react-calendar";
-import Actions from "./Actions";
 import { IPickerProps } from "../types";
 import LeftIcon from "../icons/LeftIcon";
 import RightIcon from "../icons/RightIcon";
-import useRenderOnce from "../hooks/useRenderOnce";
-import { monthsInYear } from "date-fns/esm/fp";
-import PickerContainer from "./PickerContainer";
+import useControlled from "../../hooks/useControlled";
 
 const months = [
   "January",
@@ -130,27 +126,29 @@ const Calendar = ({
 }: IPickerProps<Date> & CalendarProps) => {
   const BASE_YEAR_FOR_DROPDOWN = new Date().getFullYear() - 25;
 
-  const [currentDate, setCurrentDate] = useRenderOnce<Date>({
-    initialValue: defaultValue ?? value ?? new Date(),
-    isEqual,
-    onChange,
-    value,
+  const [currentDate, setCurrentDate] = useControlled<Date>({
+    default: defaultValue ?? value ?? new Date(),
+    controlled: value,
+    name: "Calendar",
   });
 
   const [currentView, setCurrentView] = useState(currentDate);
 
-  const handleDateChange = (e: Date) => {
-    const newCurrentView = new Date(e);
-    setCurrentDate((prevDate) => {
+  const handleDateChange = useCallback(
+    (e: Date) => {
+      const newCurrentView = new Date(e);
+      const prevDate = currentDate;
       e.setHours(
         prevDate.getHours(),
         prevDate.getMinutes(),
         prevDate.getSeconds()
       );
-      return e;
-    });
-    setCurrentView(newCurrentView);
-  };
+      onChange(e);
+      setCurrentDate(e);
+      setCurrentView(newCurrentView);
+    },
+    [currentDate]
+  );
 
   const handleNextMonth = () => {
     setCurrentView((currentView) => addMonths(currentView, 1));
@@ -165,9 +163,7 @@ const Calendar = ({
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          // padding: "10px 24px",
           padding: size === "small" ? "0 16px" : "0 20px",
-          // height: "43px",
           paddingBottom: "0px",
           boxSizing: "border-box",
         }}

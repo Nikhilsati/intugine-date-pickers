@@ -1,5 +1,5 @@
-import { isEqual, setHours, setMinutes } from "date-fns";
-import useRenderOnce from "./useRenderOnce";
+import { setHours, setMinutes } from "date-fns";
+import useControlled from "../../hooks/useControlled";
 
 export interface ITimeInputHookProps {
   defaultValue?: Date;
@@ -20,20 +20,22 @@ const useTime = ({
   type = "hour",
   onChange,
 }: ITimeInputHookProps) => {
-  const [currentValue, setCurrentValue] = useRenderOnce({
-    initialValue: defaultValue ?? value ?? new Date(),
-    isEqual: (a: Date, b: Date) => isEqual(a, b),
-    onChange,
-    value,
+  const [currentValue, setCurrentValue] = useControlled({
+    default: defaultValue ?? value ?? new Date(),
+    controlled: value,
+    name: "Time",
   });
 
   const handleInput = (e: any) => {
     let value = parseInt(e.target.value) ?? 0;
+    let newValue: Date;
     if (type === "hour") {
-      setCurrentValue(setHours(currentValue, value % 24));
+      newValue = setHours(currentValue, value % 24);
     } else {
-      setCurrentValue(setMinutes(currentValue, value % 60));
+      newValue = setMinutes(currentValue, value % 60);
     }
+    setCurrentValue(newValue);
+    onChange(newValue);
   };
 
   const handlePrev = () => {
@@ -49,6 +51,7 @@ const useTime = ({
     newDate.setMonth(currentValue.getMonth());
     newDate.setFullYear(currentValue.getFullYear());
     setCurrentValue(newDate);
+    onChange(newDate);
   };
 
   const handleNext = () => {
@@ -64,6 +67,7 @@ const useTime = ({
     newDate.setMonth(currentValue.getMonth());
     newDate.setFullYear(currentValue.getFullYear());
     setCurrentValue(newDate);
+    onChange(newDate);
   };
 
   return {
