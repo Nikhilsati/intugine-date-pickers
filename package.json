@@ -1,7 +1,7 @@
 {
   "name": "@intugine/pickers",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "type": "module",
   "module": "./lib/esm/index.js",
   "main": "./lib/cjs/index.js",
@@ -36,5 +36,13 @@
     "@vitejs/plugin-react": "^3.0.0",
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
+  },
+  "author": {
+    "name": "Nikhil Sati",
+    "email": "nikhil121sati.5@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nikhilsati/intugine-date-pickers.git"
   }
 }
