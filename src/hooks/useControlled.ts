@@ -23,7 +23,7 @@ export default function useControlled<T>({
       if (isControlled !== (controlled !== undefined)) {
         console.error(
           [
-            `Dropdown component is changing the ${
+            `${name} component is changing the ${
               isControlled ? "" : "un"
             }controlled ${state} state of ${name} to be ${
               isControlled ? "un" : ""
@@ -44,7 +44,7 @@ export default function useControlled<T>({
       if (!isControlled && defaultValue !== defaultProp) {
         console.error(
           [
-            `Dropdown component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
+            `${name} component is changing the default ${state} state of an uncontrolled ${name} after being initialized. ` +
               `To suppress this warning opt to use a controlled ${name}.`,
           ].join("\n")
         );
